@@ -76,18 +76,18 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 // - create a new data, store into chaincode state
 // ============================================================
 func (t *SimpleChaincode) save(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	
+
 	if len(args) != 2 {
 		return shim.Error("Incorrect number of arguments. Expecting 2")
 	}
 
-	err := stub.PutState(args[0],,,,,, []byte(args[1]))
+	err := stub.PutState(args[0], []byte(args[1]))
+
 	if err != nil {
 		return shim.Error(err.Error())
 	}
 	fmt.Println("- end save business")
 	return shim.Success(nil)
-	
 
 }
 
@@ -159,4 +159,3 @@ func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString 
 
 	return buffer.Bytes(), nil
 }
-
